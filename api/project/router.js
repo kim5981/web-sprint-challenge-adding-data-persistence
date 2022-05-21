@@ -1,13 +1,16 @@
 //* PROJECT ROUTER 
 
-const router = require("express").Router()
+const express = require("express")
+const Project = require("./model")
+const router = express.Router()
+
 const {
     checkCompleted,
     validateProject,
     checkProjectId,
 } = require("./middleware")
 
-const Project = require("./model")
+
 
 router.get("/", checkCompleted, (req, res, next) => {
     Project.get()
@@ -17,7 +20,7 @@ router.get("/", checkCompleted, (req, res, next) => {
     .catch(next)
 })
 
-router.get("/:id"), checkCompleted, checkProjectId, (req, res, next) => {
+router.get("/:project_id", checkCompleted, checkProjectId, (req, res, next) => {
     const { project_id } = req.params
 
     Project.getProjectById(project_id)
@@ -25,7 +28,7 @@ router.get("/:id"), checkCompleted, checkProjectId, (req, res, next) => {
         res.json(project)
     })
     .catch(next)
-}
+})
 
 /**
  * {
@@ -36,14 +39,14 @@ router.get("/:id"), checkCompleted, checkProjectId, (req, res, next) => {
  * }
  */
 
-router.post("/"), validateProject, checkCompleted, (req, res, next) => {
+router.post("/", validateProject, checkCompleted, (req, res, next) => {
     const project = req.body
     Project.create(project)
         .then(project => {
             res.status(201).json(project)
         })
         .catch(next)
-}
+    })
 
 
 module.exports = router

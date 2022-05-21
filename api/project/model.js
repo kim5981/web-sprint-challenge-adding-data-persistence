@@ -6,9 +6,9 @@ function get(){
     return db("projects")
 }
 
-function getProjectById(id){
+function getProjectById(project_id){
     return db("projects")
-    .where("project_id", id)
+    .where("project_id", project_id)
     .first()
 }
 
