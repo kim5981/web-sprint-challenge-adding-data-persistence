@@ -1,10 +1,13 @@
-// build your `/api/projects` router here
+//* PROJECT ROUTER 
 
 const router = require("express").Router()
+const {
+    checkCompleted
+} = require("./middleware")
 
 const Project = require("./model")
 
-router.get("/", (req, res, next) => {
+router.get("/", checkCompleted, (req, res, next) => {
     Project.get()
     .then(projects => {
         res.json(projects)
