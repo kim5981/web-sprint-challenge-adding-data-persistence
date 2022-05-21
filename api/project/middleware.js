@@ -17,8 +17,8 @@ const checkCompleted = async (req, res, next) => {
 const validateProject = async (req, res, next) => {
     const { project_name } = req.body
     if( 
-        !project_name.trim() ||
-        project_name === undefined 
+        project_name === undefined ||
+        !project_name.trim()
     ){
         next({
             status: 400,
