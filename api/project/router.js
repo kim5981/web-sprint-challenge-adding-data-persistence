@@ -30,16 +30,7 @@ router.get("/:project_id", checkCompleted, checkProjectId, (req, res, next) => {
     .catch(next)
 })
 
-/**
- * {
- * "project_id":1,
- * "project_name":"bar",
- * "project_description":null,
- * "project_completed":false
- * }
- */
-
-router.post("/", validateProject, checkCompleted, (req, res, next) => {
+router.post("/", validateProject, (req, res, next) => {
     const project = req.body
     Project.create(project)
         .then(project => {

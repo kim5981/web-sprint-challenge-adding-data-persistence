@@ -19,7 +19,8 @@ const validateProject = async (req, res, next) => {
     if( 
         project_name === undefined ||
         !project_name.trim()
-    ){
+    )
+    {
         next({
             status: 400,
             message: "missing or invalid project_name"

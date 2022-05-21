@@ -12,12 +12,11 @@ function getProjectById(project_id){
     .first()
 }
 
-function create(project) {
+async function create(project) {
     return db("projects")
     .insert(project)
     .then( ([id]) => {
-        return db("projects")
-        .where("project_id", id).first()
+        return db("projects").where("project_id", id).first()
     })
 }
 
