@@ -11,7 +11,7 @@ exports.up = async function(knex) {
             .notNullable()
         tbl.string("project_description", 150)
         tbl.boolean("project_completed")
-            .defaultTo("false")
+            .defaultTo(0)
     })
     
     .createTable("resources", tbl => {
@@ -28,7 +28,7 @@ exports.up = async function(knex) {
             .notNullable()
         tbl.string("task_notes", 150)
         tbl.boolean("task_completed")
-            .defaultTo("false")
+            .defaultTo(0)
         tbl.integer("project_id")
             .unsigned()
             .notNullable()
