@@ -13,7 +13,7 @@ server.use("/api/resources", resourcesRouter)
 server.use("/api/tasks", tasksRouter)
 
 server.use("*", (req, res) => {
-    res.json({ message: "server running, over"})
+    res.json({ message: "something occurred while trying to fetch your data.. :("})
 })
 
 server.use((err, req, res, next) => { //eslint-disable-line
