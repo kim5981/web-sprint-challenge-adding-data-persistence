@@ -1,8 +1,7 @@
 const db = require("../../data/dbConfig")
 
 function get(){
-    return db("projects")
-    .select("*")
+    return db("resources")
 }
 
 module.exports = {
