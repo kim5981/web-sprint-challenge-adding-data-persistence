@@ -16,18 +16,9 @@ const checkCompleted = async (req, res, next) => {
 
 const validateProject = async (req, res, next) => {
     const { project_name } = req.body
-    if( 
-        project_name === undefined ||
-        !project_name.trim()
-    )
-    {
-        next({
-            status: 400,
-            message: "missing or invalid project_name"
-        })
-    } else {
-        next()
-    }
+    project_name === undefined || !project_name.trim() 
+    ? next({ status: 400, message: "missing or invalid project_name" })
+    : next()
 }
 
 const checkProjectId = async (req, res, next) => {
@@ -48,5 +39,5 @@ const checkProjectId = async (req, res, next) => {
 module.exports = {
     checkCompleted,
     validateProject,
-    checkProjectId
+    checkProjectId, 
 }

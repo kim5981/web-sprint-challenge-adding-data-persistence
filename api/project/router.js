@@ -7,7 +7,7 @@ const router = express.Router()
 const {
     checkCompleted,
     validateProject,
-    checkProjectId,
+    checkProjectId
 } = require("./middleware")
 
 
@@ -31,12 +31,22 @@ router.get("/:project_id", checkCompleted, checkProjectId, (req, res, next) => {
 })
 
 router.post("/", validateProject, (req, res, next) => {
-    const project = req.body
-    Project.create(project)
-        .then(project => {
-            res.status(201).json(project)
-        })
-        .catch(next)
+    Project.create(req.body)  
+    .then(p => {
+        if (
+            p.project_completed === 0 
+            || p.project_completed === "false" 
+        ){
+            p.project_completed = false
+        } else if (
+             p.project_completed === 1 
+             || p.project_completed === "true" 
+        ){
+            p.project_completed = true
+        }
+            res.status(201).json(p)
+    })
+    .catch(next)
     })
 
 
