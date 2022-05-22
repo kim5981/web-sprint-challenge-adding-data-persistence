@@ -29,9 +29,9 @@ router.get("/:project_id", checkCompleted, checkProjectId, (req, res, next) => {
 router.post("/", validateProject, (req, res, next) => {
     Project.create(req.body)  
     .then(p => {
-       ( p.project_completed === 0 || p.project_completed === "false" ) 
+       p.project_completed === 0 || p.project_completed === "false" 
        ? p.project_completed = false 
-       : ( p.project_completed === 1 ||  p.project_completed === "true" )
+       : p.project_completed === 1 ||  p.project_completed === "true"
        ? p.project_completed = true 
        : next()
         res.status(201).json(p)
