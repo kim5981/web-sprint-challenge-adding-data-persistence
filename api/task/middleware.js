@@ -1,8 +1,6 @@
 const Tasks = require("./model")
 const Projects = require("../project/model")
 
-const db = require("../../data/dbConfig")
-
 const checkCompleted = async (req, res, next) => {
     await Tasks.getTasks()
         .then( tasks => {
@@ -33,7 +31,7 @@ const checkExistingProjectId = async (req, res, next) => {
 }
 
 const validateTask = async (req, res, next) => {
-     const { task_description, project_id } = req.body
+     const { task_description } = req.body
 
     if( 
         !task_description
