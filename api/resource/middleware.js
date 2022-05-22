@@ -3,11 +3,9 @@ const db = require("../../data/dbConfig")
 
 const validateResource = (req, res, next) => {
     const { resource_name } = req.body
-    if(!resource_name){
-        next({ status: 400, message: "resource_name is missing" })
-    } else {
-        next()
-    }
+    !resource_name
+    ? next({ status: 400, message: "resource_name is missing" })
+    : next()
 }
 
 function getProjectById(id){

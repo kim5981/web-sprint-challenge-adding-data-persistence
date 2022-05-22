@@ -1,5 +1,3 @@
-//* ROUTER MODEL
-
 const router = require("express").Router()
 
 const Resource = require("./model")
