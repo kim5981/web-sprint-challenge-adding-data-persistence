@@ -1,8 +1,7 @@
 //* PROJECT ROUTER 
 
-const express = require("express")
+const router = require("express").Router()
 const Project = require("./model")
-const router = express.Router()
 
 const {
     checkCompleted,
