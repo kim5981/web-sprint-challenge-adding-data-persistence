@@ -1,5 +1,3 @@
-//* TASK MODEL
-
 const db = require("../../data/dbConfig")
 
 function getTasks(){
@@ -7,7 +5,6 @@ function getTasks(){
     .select("t.*", "p.project_name", "p.project_description")
     .join("projects as p" ,"p.project_id", "t.project_id")
 }
-
 
 async function createTask(task) {
     return db("tasks")
