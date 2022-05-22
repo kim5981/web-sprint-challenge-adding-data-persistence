@@ -1,4 +1,5 @@
 const Resource = require("./model")
+const db = require("../../data/dbConfig")
 
 const validateResource = (req, res, next) => {
     const { resource_name } = req.body
@@ -7,6 +8,10 @@ const validateResource = (req, res, next) => {
     } else {
         next()
     }
+}
+
+function getProjectById(id){
+    return db("projects").where("project_id", id).first()
 }
 
 const checkExisting = async (req, res, next) => {
@@ -25,4 +30,4 @@ const checkExisting = async (req, res, next) => {
     }
 }
 
-module.exports = { validateResource, checkExisting }
+module.exports = { validateResource, checkExisting, getProjectById }

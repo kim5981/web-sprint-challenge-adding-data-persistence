@@ -8,6 +8,16 @@ function getTasks(){
     .join("projects as p" ,"p.project_id", "t.project_id")
 }
 
+
+async function createTask(task) {
+    return db("tasks")
+    .insert(task)
+    .then( ([id]) => {
+        return db("tasks").where("task_id", id).first()
+    })
+}
+
 module.exports = {
-    getTasks
+    getTasks,
+    createTask
 }
