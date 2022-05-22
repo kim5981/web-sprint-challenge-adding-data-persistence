@@ -1,6 +1,9 @@
-// build your `Task` model here
-function getTasks(){
+//* TASK MODEL
 
+const db = require("../../data/dbConfig")
+
+function getTasks(){
+    return db("tasks")
 }
 
 module.exports = {
