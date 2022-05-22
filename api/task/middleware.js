@@ -16,15 +16,13 @@ const checkCompleted = async (req, res, next) => {
 
 const checkExistingProjectId = async (req, res, next) => {
     try{
-        const existingProjectId = await Projects.getProjectById(req.body.project_id)
-        if(!existingProjectId){
-            next({
-                status: 400,
-                message: ` project_id ${req.body.project_id} does not exist`
-            })
-        } else {
-            next()
-        }
+        const { project_id } = req.body
+        const existingProjectId = await Projects.getProjectById(project_id)
+        
+        !existingProjectId
+        ? next({ status: 400, message: ` project_id ${project_id} does not exist` })
+        : next()
+    
     }catch(err){
         next(err)
     }
