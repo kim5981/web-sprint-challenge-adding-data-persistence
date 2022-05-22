@@ -1,5 +1,3 @@
-//* TASKS ROUTER
-
 const router = require("express").Router()
 
 const Task = require("./model")
@@ -7,15 +5,15 @@ const Task = require("./model")
 const {
     checkExistingProjectId,
     validateTask
-} = require("./middleware")
+    } = require("./middleware")
 
 router.get("/", (req, res, next) => {
     Task.getTasks()
     .then(tasks => {
-        tasks.map( task => {
-            task.task_completed === 0 ? 
-            task.task_completed = false :
-            task.task_completed = true
+        tasks.map( t => {
+            t.task_completed === 0 ? 
+            t.task_completed = false :
+            t.task_completed = true
         })
         res.json(tasks)
     })
