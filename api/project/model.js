@@ -1,5 +1,3 @@
-//* PROJECT MODEL
-
 const db = require("../../data/dbConfig")
 
 function get(){
