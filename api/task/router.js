@@ -25,19 +25,15 @@ validateTask,
 checkExistingProjectId, 
 async (req, res, next) => {
     Task.createTask(req.body)
-    .then(task => {
-        if (
-            task.task_completed === 0 
-            || task.task_completed === "false" 
-        ){
-            task.task_completed = false
-        } else if (
-             task.task_completed === 1 
-             || task.task_completed === "true" 
-        ){
-            task.task_completed = true
-        }
-            res.status(201).json(task)
+    .then(t => {
+
+        t.task_completed === 0 || t.task_completed === "false"
+        ? t.task_completed = false
+        : t.task_completed === 1 || t.task_completed === "true"
+        ? t.task_completed = true
+        : next()
+    
+            res.status(201).json(t)
     })
     .catch(next)
 })
