@@ -19,8 +19,11 @@ router.get("/", (req, res, next) => {
 
 router.post("/", validateResource, checkExisting, (req, res, next) => {
     Resource.createResource(req.body)  
-    .then(resource => {
-            res.status(201).json(resource)
+    .then(() => {
+            res.status(201).json({
+                ...req.body,
+                resource_name: req.body.resource_name
+            })
     })
     .catch(next)
     })

@@ -9,13 +9,9 @@ function getResourceByName(name){
 }
 
 async function createResource(resource) {
-    return db("resources")
-    .insert(resource)
-    .then( ([resource_name]) => {
-        return db("resources").where("resource_name", resource_name).first()
-    })
+    const [resource_name] = await db("resources").insert(resource)
+    return getResourceByName({ resource_name })
 }
-
 
 module.exports = {
     get,
