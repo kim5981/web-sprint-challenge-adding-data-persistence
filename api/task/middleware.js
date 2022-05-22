@@ -31,17 +31,9 @@ const checkExistingProjectId = async (req, res, next) => {
 const validateTask = async (req, res, next) => {
      const { task_description } = req.body
 
-    if( 
-        !task_description
-        || !task_description.trim() 
-    ){
-        next({ 
-            status: 400, 
-            message: "incomplete or invalid task_description"
-         })
-    } else {
-        next()
-    }   
+     !task_description || !task_description.trim()
+     ? next({ status: 400, message: "incomplete or invalid task_description" })
+     : next()  
  }
 
 
