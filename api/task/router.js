@@ -8,9 +8,14 @@ const {
     checkCompleted
 } = require("./middleware")
 
-router.get("/", checkCompleted, (req, res, next) => {
+router.get("/", (req, res, next) => {
     Task.getTasks()
     .then(tasks => {
+        tasks.map( task => {
+            task.task_completed === 0 ? 
+            task.task_completed = false :
+            task.task_completed = true
+        })
         res.json(tasks)
     })
     .catch(next)

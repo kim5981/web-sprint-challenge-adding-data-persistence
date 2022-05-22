@@ -10,7 +10,7 @@ const checkCompleted = async (req, res, next) => {
                task.task_completed = false :
                task.task_completed = true
            })
-           res.status(200).json(tasks)
+           next()
         })
         .catch(next)
 }
